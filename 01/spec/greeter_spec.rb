@@ -1,10 +1,10 @@
-require "simplecov"
+# frozen_string_literal: true
 
-require_relative "../lib/greeter"
+require_relative '../lib/greeter'
 
 RSpec.describe Greeter do
-  it "greets by name" do
+  it 'greets by name' do
     greeter = Greeter.new
-    expect(greeter.greet("World")).to eq("Hello, World!")
+    expect(greeter.greet('World')).to eq('Hello, World!')
   end
 end

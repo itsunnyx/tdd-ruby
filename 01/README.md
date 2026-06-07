@@ -29,21 +29,28 @@ bundle exec rspec spec/greeter_spec.rb
 
 ## Code Coverage
 
-Tests generate a SimpleCov report in `coverage/`:
+SimpleCov is loaded once via `spec/spec_helper.rb` (required by `.rspec`). Tests generate reports in `coverage/`:
 
 ```bash
 bundle exec rspec
 open coverage/index.html
 ```
 
+For inline coverage gutters in Cursor/VS Code, see [COVERAGE_GUTTERS.md](COVERAGE_GUTTERS.md).
+
 ## Project Structure
 
 ```
 01/
+├── .rspec
 ├── .simplecov
 ├── Gemfile
 ├── lib/
-│   └── greeter.rb
+│   ├── cart.rb
+│   ├── greeter.rb
+│   └── item.rb
 └── spec/
+    ├── spec_helper.rb
+    ├── cart_spec.rb
     └── greeter_spec.rb
 ```

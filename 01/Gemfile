@@ -1,5 +1,8 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "rspec", "~> 3.13"
-gem "simplecov", "~> 0.22"
-gem "simplecov-lcov", "~> 0.9"
+source 'https://rubygems.org'
+
+gem 'rspec', '~> 3.13'
+gem 'rubocop', require: false
+gem 'simplecov', '~> 0.22'
+gem 'simplecov-lcov', '~> 0.9'

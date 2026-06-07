@@ -22,7 +22,29 @@ Install:
 bundle install
 ```
 
-## 3. Configure SimpleCov
+## 3. Load SimpleCov once (not in every spec)
+
+SimpleCov must start **before** any file in `lib/` is loaded. Do not put `require "simplecov"` in individual spec files.
+
+Create `spec/spec_helper.rb`:
+
+```ruby
+require "simplecov"
+```
+
+Create `.rspec` in the project root:
+
+```
+--require spec_helper
+```
+
+RSpec loads `spec_helper` automatically before any spec runs. Your spec files only need to require the lib files they test:
+
+```ruby
+require_relative "../lib/cart"
+```
+
+## 4. Configure SimpleCov
 
 Replace the contents of `.simplecov` with:
 
@@ -54,7 +76,7 @@ bundle exec rspec
 
 This creates `coverage/lcov.info` alongside the HTML report.
 
-## 4. Configure workspace settings
+## 5. Configure workspace settings
 
 Add to `.vscode/settings.json` at the repo root (`ror/.vscode/settings.json`):
 
@@ -78,7 +100,7 @@ If you open the `01` folder directly as the workspace root instead, use:
 }
 ```
 
-## 5. Use Coverage Gutters
+## 6. Use Coverage Gutters
 
 1. Run tests: `bundle exec rspec`
 2. Click **Watch** in the status bar, or run **Coverage Gutters: Watch** from the command palette
@@ -94,6 +116,7 @@ If you open the `01` folder directly as the workspace root instead, use:
 
 ## Troubleshooting
 
+- **Low coverage (e.g. 10%) despite passing tests** — A spec file loaded `lib/` code before SimpleCov started. Use `spec/spec_helper.rb` and `.rspec` as shown above; do not `require "simplecov"` in individual specs.
 - **No gutters showing** — Open the **Coverage Gutters** output panel and check for file path errors.
 - **Stale coverage** — Re-run `bundle exec rspec` after changing code or specs.
 - **Wrong paths in lcov** — Keep `report_with_single_file = true` and output to `coverage/lcov.info` as shown above.
