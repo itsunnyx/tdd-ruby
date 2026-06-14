@@ -1,0 +1,11 @@
+<h1>Checkout#index</h1>
+<div data-testid="cart-items">
+  <% @cart.items.each do |item| %>
+    <div><%= item.name %></div><div><%= item.price %></div>
+  <% end %>
+</div>
+<div>
+  <p data-testid="total-amount"><%= @checkout.total_amount %></p>
+  <!-- <p data-testid="total-amount"><%= number_to_currency(@checkout.total_amount, unit: "", precision: 2) %></p> -->
+  <p data-testid="freebies"><%= @checkout.freebies %></p>
+</div>

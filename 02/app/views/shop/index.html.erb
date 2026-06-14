@@ -1,0 +1,13 @@
+<h1>Shop#index</h1>
+<%= form_with url: checkout_path, method: :post do %>
+  <div data-testid="shop-items">
+    <% @products.each do |product| %>
+      <label>
+        <input type="checkbox" name="items[]" value="<%= product.slug %>" />
+        <%= product.name %> — <%= product.price %>
+      </label>
+      <br>
+    <% end %>
+  </div>
+  <button type="submit">Go to checkout</button>
+<% end %>
